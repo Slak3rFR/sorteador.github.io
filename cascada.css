@@ -1,0 +1,48 @@
+body {
+    background-color: black;
+    color: yellow; /* Color de texto amarillo */
+  }
+  
+  .container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .title {
+    color: yellow; /* Color de texto amarillo */
+  }
+
+  #generate-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Agrega una transición suave */
+    border-radius: 8px; /* Redondea un poco las puntas */
+    border: none; /* Quita el borde para que se vea más limpio */
+  }
+  
+  #generate-btn:hover {
+    background-color: rgb(255, 255, 107); /* Cambia el color del fondo al amarillo al pasar el cursor */
+  }
+  
+  .result-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .result-square {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border-radius: 8px; /* Redondea un poco las puntas */
+    border: none; /* Quita el borde para que se vea más limpio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
