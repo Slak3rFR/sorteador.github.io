@@ -1,31 +1,44 @@
-document.getElementById('generar').addEventListener('click', function () {
-  const numerosSet = new Set();
+document.addEventListener('DOMContentLoaded', function () {
+  const generateBtn = document.getElementById('generate-btn');
+  const resultContainer = document.getElementById('result');
+  const copiarBtn = document.getElementById('copiar');
 
-  while (numerosSet.size < 6) {
-    const numero = Math.floor(Math.random() * 45) + 1;
-    numerosSet.add(numero);
-  }
+  generateBtn.addEventListener('click', function () {
+    resultContainer.innerHTML = '';
 
-  const numerosArray = [...numerosSet].sort((a, b) => a - b);
+    const numeros = new Set();
 
-  // Mostrar solo en #result
-  const resultDiv = document.getElementById('result');
-  resultDiv.innerHTML = '';
+    while (numeros.size < 6) {
+      const num = Math.floor(Math.random() * 46);
+      numeros.add(num);
+    }
 
-  numerosArray.forEach(num => {
-    const span = document.createElement('span');
-    span.textContent = num.toString().padStart(2, '0');
-    span.classList.add('numero-generado');
-    resultDiv.appendChild(span);
+    const numerosArray = Array.from(numeros).sort((a, b) => a - b);
+
+    numerosArray.forEach(num => {
+      const formattedNum = num.toString().padStart(2, '0');
+
+      const square = document.createElement('div');
+      square.classList.add('result-square');
+      square.textContent = formattedNum;
+
+      resultContainer.appendChild(square);
+    });
+
+    // Guardar y mostrar botón
+    copiarBtn.setAttribute('data-numeros', numerosArray.map(n => n.toString().padStart(2, '0')).join(' '));
+    copiarBtn.style.display = 'inline-block';
   });
 
-  // Guardar los números para el botón Copiar
-  document.getElementById('copiar').setAttribute('data-numeros', numerosArray.join(' '));
-});
+  copiarBtn.addEventListener('click', function () {
+    const numeros = copiarBtn.getAttribute('data-numeros');
 
-document.getElementById('copiar').addEventListener('click', function () {
-  const numeros = this.getAttribute('data-numeros');
-  navigator.clipboard.writeText(numeros).then(() => {
-    alert('Números copiados: ' + numeros);
+    navigator.clipboard.writeText(numeros)
+      .then(() => {
+        alert("¡Números copiados al portapapeles!");
+      })
+      .catch(() => {
+        alert("Error al copiar los números.");
+      });
   });
 });
